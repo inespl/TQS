@@ -12,4 +12,5 @@ jacoco
 -> por plugin
 -> `mvn compile`
 -> `mvn test`
-abrir /target/site/jacoco.html
+-> `mvn jacoco:report`
+abrir /target/site/index.html

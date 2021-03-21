@@ -1,0 +1,3 @@
+[submodule "lab1/euromilhoes"]
+	path = lab1/euromilhoes
+	url = https://github.com/inespl/TQS.git
