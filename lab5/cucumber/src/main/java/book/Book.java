@@ -1,13 +1,13 @@
 package book;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Book {
     private final String title;
     private final String author;
-    private final LocalDateTime published;
+    private final Date published;
 
-    public Book(String title, String author, LocalDateTime published) {
+    public Book(String title, String author, Date published) {
         this.title = title;
         this.author = author;
         this.published = published;
@@ -17,7 +17,7 @@ public class Book {
         return author;
     }
 
-    public LocalDateTime getPublished() {
+    public Date getPublished() {
         return published;
     }
 

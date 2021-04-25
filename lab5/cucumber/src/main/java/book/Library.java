@@ -19,4 +19,10 @@ public class Library {
             return from.before(book.getPublished()) && end.getTime().after(book.getPublished());
         }).sorted(Comparator.comparing(Book::getPublished).reversed()).collect(Collectors.toList());
     }
+
+    public void showStore() {
+        for (Book b : store){
+            System.out.println(b.getTitle() + "\n");
+        }
+    }
 }
