@@ -53,5 +53,7 @@ Passou à 1a, criei um quality gate onde falhava se os code smells fossem mais q
 
 # Task 4: Static code analysis at the IDE
 
+SonarLint instalado
+
 
 
