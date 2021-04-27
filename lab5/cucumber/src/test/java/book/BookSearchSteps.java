@@ -19,7 +19,6 @@ public class BookSearchSteps {
 
     //@ParameterType("([0-9]{4})-([0-9]{2})-([0-9]{2})")
 
-
     @Given("(a|another) book with the title {string}, written by {string} published in {int}-{int}-{int}")
     public void addNewBook(final String title, final String author, final int year, final int month, final int day) {
         System.out.println(title + author);
