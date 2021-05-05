@@ -21,7 +21,7 @@
 
         <br>
 
-        <div>
+        <div style="padding-left: 10px">
             <form class="row g-3 needs-validation" novalidate>
                 <div class="col-md-3">
                     <label for="validationCustom04" class="form-label">Location</label>
@@ -34,9 +34,54 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Submit form</button>
+                    <button class="btn btn-primary" type="submit">Submit</button>
                 </div>
             </form>
+
+            <br>
+
+            <form class="row g-3 needs-validation" novalidate>
+                <div class="col-md-3">
+                    <label for="latID" class="form-label">Latitude</label>
+                    <input type="text" class="form-control" id="latID">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="lonID" class="form-label">Longitude</label>
+                    <input type="text" class="form-control" id="lonID">
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+
+
         </div>
+
+<!-- pode se por aqui a tabela q vai aparecer ou só a descrição das cenas-->
+<!--
+Field Decriptions:
+    lat: Latitude (Degrees).
+    lon: Longitude (Degrees).
+    timezone: Local IANA Timezone.
+    city_name: City name.
+    country_code: Country abbreviation.
+    state_code: State abbreviation/code.
+    data: [
+        aqi: Air Quality Index [US - EPA standard 0 - +500]
+        o3: Concentration of surface O3 (µg/m³)
+        so2: Concentration of surface SO2 (µg/m³)
+        no2: Concentration of surface NO2 (µg/m³)
+        co: Concentration of carbon monoxide (µg/m³)
+        pm25: Concentration of particulate matter < 2.5 microns (µg/m³)
+        pm10: Concentration of particulate matter < 10 microns (µg/m³)
+        pollen_level_tree: Tree pollen level (0 = None, 1 = Low, 2 = Moderate, 3 = High, 4 = Very High)
+        pollen_level_grass:Grass pollen level (0 = None, 1 = Low, 2 = Moderate, 3 = High, 4 = Very High)
+        pollen_level_weed:Weed pollen level (0 = None, 1 = Low, 2 = Moderate, 3 = High, 4 = Very High)
+        mold_level: Mold level (0 = None, 1 = Low, 2 = Moderate, 3 = High, 4 = Very High)
+        predominant_pollen_type: Predominant pollen type (Trees/Weeds/Molds/Grasses)
+    ... ]
+-->
     </body>
 </html>
