@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import tqs.entities.Quality;
-import tqs.controller.RestClient;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.json.JSONArray;
@@ -75,13 +74,4 @@ public class WebController {
         model.addAttribute("quality", quality);
         return "homePage";
     }
-
-    // http://localhost:8080/city?lat=40.6442700&lon=-8.6455400
-    @GetMapping("/city")
-    public String cityData(@RequestParam(name = "lat") double lat, @RequestParam(name = "lon") double lon, Model model) {
-        Quality quality = callGetAirQualityInLocation(lat, lon);
-        model.addAttribute("quality", quality);
-        return "cityPage";
-    }
-
 }
