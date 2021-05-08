@@ -8,6 +8,7 @@ public class Quality {
     private Long id;
     private double lat;
     private double lon;
+    private String city_name;
     private String timezone;
     private String country_code;
     private String state_code;
@@ -16,8 +17,8 @@ public class Quality {
     private double so2;
     private double no2;
     private double co;
-    private int pm10;
-    private int pm25;
+    private double  pm10;
+    private double pm25;
     private int pollen_level_tree;
     private int pollen_level_grass;
     private int pollen_level_weed;
@@ -47,6 +48,14 @@ public class Quality {
 
     public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    public String getCity_name() {
+        return city_name;
+    }
+
+    public void setCity_name(String city_name) {
+        this.city_name = city_name;
     }
 
     public String getTimezone() {
@@ -113,19 +122,19 @@ public class Quality {
         this.co = co;
     }
 
-    public int getPm10() {
+    public double getPm10() {
         return pm10;
     }
 
-    public void setPm10(int pm10) {
+    public void setPm10(double pm10) {
         this.pm10 = pm10;
     }
 
-    public int getPm25() {
+    public double getPm25() {
         return pm25;
     }
 
-    public void setPm25(int pm25) {
+    public void setPm25(double pm25) {
         this.pm25 = pm25;
     }
 
@@ -167,5 +176,29 @@ public class Quality {
 
     public void setPredominant_pollen_type(String predominant_pollen_type) {
         this.predominant_pollen_type = predominant_pollen_type;
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("aqi: " + this.aqi + ", ");
+        sb.append("so2: " + this.so2 + ", ");
+        sb.append("no2: " + this.no2 + ", ");
+        sb.append("co: " + this.co + ", ");
+        sb.append("o3: " + this.o3 + ", ");
+        sb.append("pollen_level_grass: " + this.pollen_level_grass + ", ");
+        sb.append("pollen_level_tree: " + this.pollen_level_tree + ", ");
+        sb.append("pollen_level_weed: " + this.pollen_level_weed + ", ");
+        sb.append("mold_level: " + this.mold_level + ", ");
+        sb.append("predominant_pollen_type: " + this.predominant_pollen_type + ", ");
+        sb.append("pm10: " + this.pm10 + ", ");
+        sb.append("pm25: " + this.pm25 + ", ");
+        sb.append("city_name: " + this.city_name + ", ");
+        sb.append("lat: " + this.lat + ", ");
+        sb.append("lon: " + this.lon + ", ");
+        sb.append("state_code: " + this.state_code + ", ");
+        sb.append("country_code: " + this.country_code + ", ");
+        sb.append("timezone: " + this.timezone + ", ");
+
+        return sb.toString();
     }
 }

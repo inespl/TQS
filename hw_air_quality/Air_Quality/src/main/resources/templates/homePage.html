@@ -22,33 +22,35 @@
         <br>
 
         <div style="padding-left: 10px">
-            <form class="row g-3 needs-validation" novalidate>
-                <div class="col-md-3">
-                    <label for="validationCustom04" class="form-label">Location</label>
-                    <select class="form-select" id="validationCustom04" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Please select a valid location.
-                    </div>
-                </div>
-                <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </div>
-            </form>
+<!--            <form class="row g-3 needs-validation" novalidate>-->
+<!--                <div class="col-md-3">-->
+<!--                    <label for="validationCustom04" class="form-label">Location</label>-->
+<!--                    <select class="form-select" id="validationCustom04" required>-->
+<!--                        <option selected disabled value="">Choose...</option>-->
+<!--                        <option>...</option>-->
+<!--                    </select>-->
+<!--                    <div class="invalid-feedback">-->
+<!--                        Please select a valid location.-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-12">-->
+<!--                    <button class="btn btn-primary" type="submit">Submit</button>-->
+<!--                </div>-->
+<!--            </form>-->
 
             <br>
 
-            <form class="row g-3 needs-validation" novalidate>
+            <form class="row g-3 needs-validation" novalidate th:action="${'/'}" method="POST">
                 <div class="col-md-3">
                     <label for="latID" class="form-label">Latitude</label>
-                    <input type="text" class="form-control" id="latID">
+                    <input type="text" class="form-control" id="latID" name="lat" required>
                 </div>
 
                 <div class="col-md-3">
+                    <div class="form-check">
                     <label for="lonID" class="form-label">Longitude</label>
-                    <input type="text" class="form-control" id="lonID">
+                    <input type="text" class="form-control" id="lonID" name="lon" required>
+                    </div>
                 </div>
 
                 <div class="col-12">
@@ -59,7 +61,46 @@
 
         </div>
 
-<!-- pode se por aqui a tabela q vai aparecer ou só a descrição das cenas-->
+
+        <div th:if="${showDetails == true}">
+            <p th:text="${quality.city_name}"></p>
+            <p th:text="${quality.timezone}"></p>
+            <p th:text="${quality.country_code}"></p>
+            <p th:text="${quality.state_code}"></p>
+            <p th:text="${quality.lat}"></p>
+            <p th:text="${quality.lon}"></p>
+
+            <table style="width:100%">
+                <tr>
+                    <th>AQI</th>
+                    <th>O3</th>
+                    <th>SO2</th>
+                    <th>NO2</th>
+                    <th>CO</th>
+                    <th>PM10</th>
+                    <th>PM25</th>
+                    <th>PLT</th>
+                    <th>PLG</th>
+                    <th>PLW</th>
+                    <th>ML</th>
+                    <th>PPT</th>
+                </tr>
+                <tr>
+                    <td th:text="${quality.aqi}"></td>
+                    <td th:text="${quality.o3}"></td>
+                    <td th:text="${quality.so2}"></td>
+                    <td th:text="${quality.no2}"></td>
+                    <td th:text="${quality.co}"></td>
+                    <td th:text="${quality.pm10}"></td>
+                    <td th:text="${quality.pm25}"></td>
+                    <td th:text="${quality.pollen_level_tree}"></td>
+                    <td th:text="${quality.pollen_level_grass}"></td>
+                    <td th:text="${quality.pollen_level_weed}"></td>
+                    <td th:text="${quality.mold_level}"></td>
+                    <td th:text="${quality.predominant_pollen_type}"></td>
+                </tr>
+            </table>
+        </div>
 <!--
 Field Decriptions:
     lat: Latitude (Degrees).
