@@ -1,14 +1,9 @@
-package tqs.entities;
+package tqs.Air_Quality;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Quality {
-    private Long id;
     private double lat;
     private double lon;
     private String city_name;
@@ -54,13 +49,18 @@ public class Quality {
         this.setState_code(root.getString("state_code"));
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-    @Id
-    public Long getId() {
-        return id;
-    }
+    /*public boolean compare(Quality q){
+        if(this.aqi==q.aqi && this.co==q.co && this.city_name.equals(q.city_name) && this.country_code.equals(q.country_code)
+                && this.lat == q.lat && this.lon == q.lon && this.mold_level == q.mold_level && this.no2 == q.no2 && this.o3 == q.o3
+                && this.pm10 == q.pm10 && this.pm25 == q.pm25 && this.pollen_level_grass == q.pollen_level_grass
+                && this.pollen_level_tree == q.pollen_level_tree && this.pollen_level_weed == q.pollen_level_weed
+                && this.predominant_pollen_type.equals(q.predominant_pollen_type) && this.state_code.equals(q.state_code)
+                && this.timezone.equals(q.timezone) ){
+            System.out.println("TRUE");
+            return true;
+        }
+        return false;
+    }*/
 
     public double getLat() {
         return lat;
