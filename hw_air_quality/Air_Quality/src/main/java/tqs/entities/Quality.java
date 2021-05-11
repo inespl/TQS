@@ -1,5 +1,8 @@
 package tqs.entities;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -25,6 +28,31 @@ public class Quality {
     private int mold_level;
     private String predominant_pollen_type;
 
+    public Quality(String json){
+        JSONObject root = new JSONObject(json);
+        JSONArray data = root.getJSONArray("data");
+
+        JSONObject jsonData = data.getJSONObject(0);
+        this.setMold_level(jsonData.getInt("mold_level"));
+        this.setAqi(jsonData.getInt("aqi"));
+        this.setPm10(jsonData.getInt("pm10"));
+        this.setCo(jsonData.getInt("co"));
+        this.setO3(jsonData.getDouble("o3"));
+        this.setPredominant_pollen_type(jsonData.getString("predominant_pollen_type"));
+        this.setSo2(jsonData.getDouble("so2"));
+        this.setPollen_level_tree(jsonData.getInt("pollen_level_tree"));
+        this.setPollen_level_weed(jsonData.getInt("pollen_level_weed"));
+        this.setNo2(jsonData.getDouble("no2"));
+        this.setPm25(jsonData.getInt("pm25"));
+        this.setPollen_level_grass(jsonData.getInt("pollen_level_grass"));
+
+        this.setCity_name(root.getString("city_name"));
+        this.setLon(root.getDouble("lon"));
+        this.setTimezone(root.getString("timezone"));
+        this.setLat(root.getDouble("lat"));
+        this.setCountry_code(root.getString("country_code"));
+        this.setState_code(root.getString("state_code"));
+    }
 
     public void setId(Long id) {
         this.id = id;

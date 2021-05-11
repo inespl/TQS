@@ -50,6 +50,10 @@ public class Cache {
         return null;
     }
 
+    public int size(){
+        return cacheMap.size();
+    }
+
     public int getHits() {
         return hits;
     }

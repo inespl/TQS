@@ -9,10 +9,13 @@ class CacheTest {
 
     @BeforeEach
     void setUp() {
+        Cache c = new Cache(1000);
     }
 
     @Test
     void testPut() {
+        Cache c = new Cache(1000);
+        c.put("11");
     }
 
     @Test

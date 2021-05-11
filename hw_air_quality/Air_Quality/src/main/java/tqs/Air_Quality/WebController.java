@@ -32,31 +32,7 @@ public class WebController {
         System.out.println(result.getBody());
 
         String r = result.getBody();
-        Quality q = new Quality();
-
-        JSONObject root = new JSONObject(r);
-        JSONArray data = root.getJSONArray("data");
-
-        JSONObject jsonData = data.getJSONObject(0);
-        q.setMold_level(jsonData.getInt("mold_level"));
-        q.setAqi(jsonData.getInt("aqi"));
-        q.setPm10(jsonData.getInt("pm10"));
-        q.setCo(jsonData.getInt("co"));
-        q.setO3(jsonData.getDouble("o3"));
-        q.setPredominant_pollen_type(jsonData.getString("predominant_pollen_type"));
-        q.setSo2(jsonData.getDouble("so2"));
-        q.setPollen_level_tree(jsonData.getInt("pollen_level_tree"));
-        q.setPollen_level_weed(jsonData.getInt("pollen_level_weed"));
-        q.setNo2(jsonData.getDouble("no2"));
-        q.setPm25(jsonData.getInt("pm25"));
-        q.setPollen_level_grass(jsonData.getInt("pollen_level_grass"));
-
-        q.setCity_name(root.getString("city_name"));
-        q.setLon(root.getDouble("lon"));
-        q.setTimezone(root.getString("timezone"));
-        q.setLat(root.getDouble("lat"));
-        q.setCountry_code(root.getString("country_code"));
-        q.setState_code(root.getString("state_code"));
+        Quality q = new Quality(r);
 
         return q;
     }
