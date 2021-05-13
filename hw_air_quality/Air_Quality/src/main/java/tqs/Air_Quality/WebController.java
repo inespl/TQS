@@ -36,7 +36,7 @@ public class WebController{
     int misses = 0;
 
     // https://api.weatherbit.io/v2.0/current/airquality?lat=40.6442700&lon=-8.6455400&key=bb5a83eef6fb4c56a9beca95d5362b9e
-    public static String callGetAirQualityInLocation(double lat, double lon){
+    public String callGetAirQualityInLocation(double lat, double lon){
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 

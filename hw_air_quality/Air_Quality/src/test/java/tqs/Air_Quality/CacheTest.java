@@ -3,22 +3,20 @@ package tqs.Air_Quality;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.apache.tomcat.jni.Time.sleep;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CacheTest {
+    WebController wc = new WebController();
     Cache c = new Cache(1000);
     Cache c2 = new Cache(1000);
 
-    String s1 = WebController.callGetAirQualityInLocation(38.7452, -9.1604);
-    String s2 = WebController.callGetAirQualityInLocation(41.1333, -8.6167);
-    String s3 = WebController.callGetAirQualityInLocation(41.1495, -8.6108);
+    String s1 = wc.callGetAirQualityInLocation(38.7452, -9.1604);
+    String s2 = wc.callGetAirQualityInLocation(41.1333, -8.6167);
+    String s3 = wc.callGetAirQualityInLocation(41.1495, -8.6108);
 
     @BeforeEach
     void setUp() {

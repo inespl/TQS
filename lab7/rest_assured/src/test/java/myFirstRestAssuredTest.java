@@ -16,12 +16,15 @@ public class myFirstRestAssuredTest {
 
         //given().when().get("http://demo.guru99.com/V4/sinkministatement.php?CUSTOMER_ID=68195&PASSWORD=1234!&Account_No=1").then().log().all();
 
-        given().queryParam("CUSTOMER_ID","68195")
+        given().queryParam("lat","40.4")
+                .queryParam("lon","-8.5").when().get("http://localhost:8080/api").then().log().body();
+
+        given().when().get("http://localhost:8080/api?lat=40.4&lon=-8.5").then().assertThat().statusCode(200);
+        /*given().queryParam("CUSTOMER_ID","68195")
                 .queryParam("PASSWORD","1234!")
                 .queryParam("Account_No","1")
                 .when().get("http://demo.guru99.com/V4/sinkministatement.php").then().log()
-                .body();
-
+                .body();*/
     }
 
     @Test

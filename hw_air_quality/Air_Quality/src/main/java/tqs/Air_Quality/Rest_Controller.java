@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 @RestController
 public class Rest_Controller {
+    WebController wc = new WebController();
     Cache cache = new Cache(120000); // 2 min
     Gson gson = new Gson();
     int hits = 0;
@@ -21,7 +22,7 @@ public class Rest_Controller {
 
         if (quality_json == null){
             misses ++;
-            quality_json = WebController.callGetAirQualityInLocation(lat, lon);
+            quality_json = wc.callGetAirQualityInLocation(lat, lon);
             cache.put(latlon, quality_json);
         }else
             hits ++;
