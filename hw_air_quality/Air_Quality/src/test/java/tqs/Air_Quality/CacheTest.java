@@ -63,27 +63,4 @@ class CacheTest {
         TimeUnit.MILLISECONDS.sleep(500);
         assertThat(c.get("41.1333,-8.6167"), not(s2));
     }
-
-    @Test
-    void testHitsAndMisses() throws InterruptedException {
-        assertThat(c2.get("38.7452,-9.1604"), is(s1));
-        assertThat(c2.get("41.1333,-8.6167"), is(s2));
-        assertThat(c2.get("39.7452,-9.1604"), is(nullValue()));
-
-        TimeUnit.MILLISECONDS.sleep(1000);
-        assertThat(c2.get("38.7452,-9.1604"), is(nullValue()));
-
-        assertThat(c2.getHits(), is(2));
-        assertThat(c2.getMisses(), is(2));
-    }
-
-    @Test
-    void testRequests() throws InterruptedException {
-        c2.get("38.7452,-9.1604");
-        c2.get("38.7452,-9.1604");
-        c2.get("39.7452,-9.1604");
-        c2.get("41.1333,-8.6167");
-
-        assertThat(c2.getRequests(), is(4));
-    }
 }

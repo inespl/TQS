@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-05-13T14:13:48.831901Z</date>
+  <millis>1620915228831</millis>
+  <nanos>901000</nanos>
+  <sequence>4</sequence>
+  <logger>com.javacodegeeks.snippets.core</logger>
+  <level>INFO</level>
+  <class>tqs.Air_Quality.WebController</class>
+  <method>initializeWriter</method>
+  <thread>38</thread>
+  <message>Information message</message>
+</record>
+</log>

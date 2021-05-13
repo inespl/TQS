@@ -1,17 +1,13 @@
 
-J
-java:S3740	"/Provide the parametrized type for this generic.(Õ³‘ûÿÿÿÿ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(»ú…ùûÿÿÿÿ
-f
-java:S1104"PMake hits a static final constant or non-public and provide accessors if needed.(‚…„ı
-h
-java:S1104"RMake misses a static final constant or non-public and provide accessors if needed.(î¯óÃ
-s
-java:S1104"XMake lastAccessed a static final constant or non-public and provide accessors if needed.(ÎÔÀ¸øÿÿÿÿ
-n
-java:S1104"SMake quality a static final constant or non-public and provide accessors if needed.(ùÛùİùÿÿÿÿ
-a
-java:S1128"FRemove this unused import 'org.hibernate.event.spi.SaveOrUpdateEvent'.(øÒ¯¢şÿÿÿÿ
-N	java:S106G"9Replace this use of System.out or System.err by a logger.(Ç›“‡
-N	java:S106J"9Replace this use of System.out or System.err by a logger.(Õ×¦¤
-U	java:S106L"9Replace this use of System.out or System.err by a logger.(ã€‡’8¯“ø–/
+H
+java:S3740"/Provide the parametrized type for this generic.(Õ³‘ûÿÿÿÿ
+r	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(»ú…ùûÿÿÿÿ
+q
+java:S1104"XMake lastAccessed a static final constant or non-public and provide accessors if needed.(ÎÔÀ¸øÿÿÿÿ
+l
+java:S1104"SMake quality a static final constant or non-public and provide accessors if needed.(ùÛùİùÿÿÿÿ
+_
+java:S1128"FRemove this unused import 'org.hibernate.event.spi.SaveOrUpdateEvent'.(øÒ¯¢şÿÿÿÿ
+L	java:S106"9Replace this use of System.out or System.err by a logger.(Ç›“‡
+L	java:S106"9Replace this use of System.out or System.err by a logger.(Õ×¦¤
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ã€‡’8¯“ø–/
