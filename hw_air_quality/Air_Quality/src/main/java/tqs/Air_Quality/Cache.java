@@ -1,19 +1,17 @@
 package tqs.Air_Quality;
 
-import org.hibernate.event.spi.SaveOrUpdateEvent;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Cache {
-    private Map cacheMap;
+    private Map<String, CacheObject> cacheMap;
     private long timeToLive;
 
     public class CacheObject {
-        public long lastAccessed = System.currentTimeMillis();
-        public String quality;
+        private long lastAccessed = System.currentTimeMillis();
+        private String quality;
 
         public CacheObject(String quality) {
             this.quality = quality;
@@ -26,7 +24,7 @@ public class Cache {
 
     public Cache(long ttl) {
         this.timeToLive = ttl;
-        cacheMap = new HashMap<String, CacheObject>();
+        cacheMap = new HashMap<>();
     }
 
     public void put(String key, String quality) {
@@ -35,7 +33,7 @@ public class Cache {
 
     public String get(String key) {
         if (cacheMap.containsKey(key)) {
-            CacheObject cO = (CacheObject) cacheMap.get(key);
+            CacheObject cO = cacheMap.get(key);
             if ((System.currentTimeMillis() - cO.lastAccessed) > timeToLive)
                 cacheMap.remove(key);
             else
@@ -49,23 +47,24 @@ public class Cache {
     }
 
     public void getCacheMap(){
-        System.out.println("| CACHE MAP");
+        StringBuilder sb = new StringBuilder();
+        sb.append("| CACHE MAP");
         cacheMap.forEach((k,v) -> {
-            CacheObject value = (CacheObject) v;
-            System.out.println("| " + k + " - " + value.getQuality());
+            CacheObject value = v;
+            sb.append("| " + k + " - " + value.getQuality());
         });
-        System.out.println("----------");
+        sb.append("----------");
     }
 
     public List<String> getCache(){
         List<String> mapKeys = new ArrayList<>();
 
         cacheMap.forEach((k,v) -> {
-            CacheObject value = (CacheObject) v;
+            CacheObject value = v;
             if ((System.currentTimeMillis() - value.lastAccessed) > timeToLive)
                 cacheMap.remove(k);
             else
-                mapKeys.add((String) k);
+                mapKeys.add(k);
         });
         return mapKeys;
     }

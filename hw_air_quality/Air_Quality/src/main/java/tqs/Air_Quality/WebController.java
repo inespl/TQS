@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,7 +38,8 @@ public class WebController{
 
     String filename = String.format("logs/access_log_%s%s%s_T_%s%s.txt", date[0], date[1], date[2], time[0], time[1]);
 
-    Cache cache = new Cache(60000); // 1 min
+    int ttl = 60000;
+    Cache cache = new Cache(ttl); // 1 min
     int hits = 0;
     int misses = 0;
 
@@ -44,7 +47,8 @@ public class WebController{
         f = new File(filename);
         fw = new FileWriter(f);
         bf = new BufferedWriter(fw);
-        bf.write(String.format("%s %s \t INFO \t Start of AirQualityApplication%n", localDateTime[0], localDateTime[1]));
+        bf.write(String.format("%s %s \t INFO \t\t Start of AirQualityApplication%n", localDateTime[0], localDateTime[1]));
+        bf.write(String.format("%s %s \t INFO \t\t Cache Initiated - TTL: %d%n", localDateTime[0], localDateTime[1], ttl));
         bf.flush();
     }
 
@@ -65,7 +69,7 @@ public class WebController{
     public String home(Model model) throws IOException {
         bf = new BufferedWriter(fw);
         model.addAttribute("showDetails", false);
-        bf.write(String.format("%s %s \t INFO \t Acessed '/'%n", localDateTime[0], localDateTime[1]));
+        bf.write(String.format("%s %s \t INFO \t\t Acessed '/'%n", localDateTime[0], localDateTime[1]));
         bf.flush();
         return "homePage";
     }
@@ -73,8 +77,7 @@ public class WebController{
     @PostMapping("/")
     public String home1(@RequestParam(name = "lat") double lat, @RequestParam(name = "lon") double lon, Model model) throws IOException {
         bf = new BufferedWriter(fw);
-        bf.write(String.format("%s %s \t INFO \t Request for Air Quality of Lat: %f, Lon: %f%n", localDateTime[0], localDateTime[1], lat, lon));
-        bf.flush();
+        bf.write(String.format("%s %s \t INFO \t\t Request for Air Quality of Lat: %f, Lon: %f%n", localDateTime[0], localDateTime[1], lat, lon));
         Quality quality;
         String latlon = lat + "," + lon;
         String quality_json = cache.get(latlon);
@@ -84,18 +87,21 @@ public class WebController{
             misses ++;
             quality_json = callGetAirQualityInLocation(lat, lon);
             cache.put(latlon, quality_json);
-            bf.write(String.format("%s %s \t INFO \t Request Accepted, API returned the result (not found in cache)%n", localDateTime[0], localDateTime[1]));
-            bf.flush();
+            bf.write(String.format("%s %s \t SUCCESS \t Request Accepted, API returned the result (not found in cache)%n", localDateTime[0], localDateTime[1]));
         }else {
             hits++;
-            bf.write(String.format("%s %s \t INFO \t Request Accepted and found in cache%n", localDateTime[0], localDateTime[1]));
-            bf.flush();
+            bf.write(String.format("%s %s \t SUCCESS \t Request Accepted and found in cache%n", localDateTime[0], localDateTime[1]));
         }
         quality = new Quality(quality_json);
 
+        bf.write(String.format("%s %s \t INFO \t\t Cache Statistics: Requests: %d | Hits: %d | Misses: %d%n", localDateTime[0], localDateTime[1], hits+misses, hits, misses));
+
         model.addAttribute("showDetails", true);
         model.addAttribute("quality", quality);
+        model.addAttribute("givenLat", lat);
+        model.addAttribute("givenLon", lon);
 
+        bf.flush();
         return "homePage";
     }
 }

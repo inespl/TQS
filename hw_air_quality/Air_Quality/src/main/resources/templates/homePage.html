@@ -29,6 +29,12 @@
             }
 
         </style>
+        <script>
+            function ClearFields() {
+                document.getElementById("latID1").value = "";
+                document.getElementById("lonID1").value = "";
+            }
+        </script>
     </head>
     <body style="padding-left: 10px; padding-right: 10px">
         <nav>
@@ -51,22 +57,37 @@
             <div>
                 <br>
                 <form class="row g-3 needs-validation" novalidate th:action="${'/'}" method="POST">
-                    <div class="col-md-3">
+                    <div class="col-md-3" th:if="${showDetails == false}">
                         <label for="latID" class="form-label">Latitude</label>
                         <input type="text" class="form-control" id="latID" name="lat" required="required">
                     </div>
+                    <div class="col-md-3" th:if="${showDetails == true}">
+                        <label for="latID1" class="form-label">Latitude</label>
+                        <input type="text" class="form-control" id="latID1" name="lat" required="required" th:value="${givenLat}">
+                    </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-3" th:if="${showDetails == false}">
                         <div class="form-check">
                             <label for="lonID" class="form-label">Longitude</label>
                             <input type="text" class="form-control" id="lonID" name="lon" required="required">
+                        </div>
+                    </div>
+                    <div class="col-md-3" th:if="${showDetails == true}">
+                        <div class="form-check">
+                            <label for="lonID1" class="form-label">Longitude</label>
+                            <input type="text" class="form-control" id="lonID1" name="lon" required="required" th:value="${givenLon}">
                         </div>
                     </div>
 
                     <div class="col-12">
                         <button class="btn btn btn-outline-secondary" type="submit">Search Air Quality</button>
                     </div>
+
                 </form>
+                <br>
+                <div class="col-12" th:if="${showDetails == true}">
+                    <button class="btn btn btn-outline-secondary" onclick="ClearFields();">Clear Fields</button>
+                </div>
             </div>
 
             <br>

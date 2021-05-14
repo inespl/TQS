@@ -1,0 +1,6 @@
+2021-05-14 16:18:14.048868 	 INFO 		 Start of AirQualityApplication
+2021-05-14 16:18:14.048868 	 INFO 		 Cache Initiated - TTL: 60000
+2021-05-14 16:18:14.048868 	 INFO 		 Acessed '/'
+2021-05-14 16:18:14.048868 	 INFO 		 Request for Air Quality of Lat: 38,745200, Lon: -8,610800
+2021-05-14 16:18:14.048868 	 SUCCESS 	 Request Accepted, API returned the result (not found in cache)
+2021-05-14 16:18:14.048868 	 INFO 		 Cache Statistics: Requests: 1 | Hits: 0 | Misses: 1
