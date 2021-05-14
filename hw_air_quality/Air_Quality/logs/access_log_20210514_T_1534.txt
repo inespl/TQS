@@ -1,0 +1,4 @@
+2021-05-14 15:34:57.467843 	 INFO 	 Start of AirQualityApplication
+2021-05-14 15:34:57.467843 	 INFO 	 Acessed '/'
+2021-05-14 15:34:57.467843 	 INFO 	 Request for Air Quality of Lat: 40,456000, Lon: -8,534000
+2021-05-14 15:34:57.467843 	 INFO 	 Request Accepted, API returned the result (not found in cache)

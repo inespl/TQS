@@ -5,15 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class Rest_Controller {
     WebController wc = new WebController();
-    Cache cache = new Cache(120000); // 2 min
+    int ttl = 120000;
+    Cache cache = new Cache(ttl); // 2 min
     Gson gson = new Gson();
     int hits = 0;
     int misses = 0;
+
+    public Rest_Controller() throws IOException {
+    }
 
     @GetMapping("/api")
     public String apiData_latlon(@RequestParam(name = "lat") double lat, @RequestParam(name = "lon") double lon) {
@@ -36,7 +43,27 @@ public class Rest_Controller {
         data.put("requests", hits+misses);
         data.put("hits", hits);
         data.put("misses", misses);
+        data.put("ttl", ttl);
 
         return gson.toJson(data);
     }
+
+    @GetMapping("/api/cache")
+    public String apiCache() {
+        HashMap<String, List<HashMap<String, Double>>> data = new HashMap<>();
+        List<HashMap<String, Double>> listOfLocations = new ArrayList<>();
+        HashMap<String, Double> latLons;
+        List<String> keys = cache.getCache();
+        for(String key: keys){
+            latLons = new HashMap<>();
+            String[] latLon = key.split(",");
+            latLons.put("lon", Double.parseDouble(latLon[1]));
+            latLons.put("lat", Double.parseDouble(latLon[0]));
+            listOfLocations.add(latLons);
+        }
+        data.put("data", listOfLocations);
+
+        return gson.toJson(data);
+    }
+
 }

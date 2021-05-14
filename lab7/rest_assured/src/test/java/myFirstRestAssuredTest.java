@@ -16,8 +16,17 @@ public class myFirstRestAssuredTest {
 
         //given().when().get("http://demo.guru99.com/V4/sinkministatement.php?CUSTOMER_ID=68195&PASSWORD=1234!&Account_No=1").then().log().all();
 
+
+        // String s = given().when().get("https://api.weatherbit.io/v2.0/current/airquality?lat=40.6442700&lon=-8.6455400&key=bb5a83eef6fb4c56a9beca95d5362b9e");
+
+         given().queryParam("lat","40.4")
+                .queryParam("lon","-8.5")
+                .queryParam("key", "bb5a83eef6fb4c56a9beca95d5362b9e")
+                .when().get("https://api.weatherbit.io/v2.0/current/airquality").then().log().body();
+
         given().queryParam("lat","40.4")
                 .queryParam("lon","-8.5").when().get("http://localhost:8080/api").then().log().body();
+
 
         given().when().get("http://localhost:8080/api?lat=40.4&lon=-8.5").then().assertThat().statusCode(200);
         /*given().queryParam("CUSTOMER_ID","68195")

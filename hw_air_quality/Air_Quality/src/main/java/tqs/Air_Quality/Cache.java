@@ -2,7 +2,9 @@ package tqs.Air_Quality;
 
 import org.hibernate.event.spi.SaveOrUpdateEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Cache {
@@ -34,11 +36,10 @@ public class Cache {
     public String get(String key) {
         if (cacheMap.containsKey(key)) {
             CacheObject cO = (CacheObject) cacheMap.get(key);
-            if ((System.currentTimeMillis() - cO.lastAccessed) > timeToLive) {
+            if ((System.currentTimeMillis() - cO.lastAccessed) > timeToLive)
                 cacheMap.remove(key);
-            }else {
+            else
                 return cO.getQuality();
-            }
         }
         return null;
     }
@@ -54,6 +55,19 @@ public class Cache {
             System.out.println("| " + k + " - " + value.getQuality());
         });
         System.out.println("----------");
+    }
+
+    public List<String> getCache(){
+        List<String> mapKeys = new ArrayList<>();
+
+        cacheMap.forEach((k,v) -> {
+            CacheObject value = (CacheObject) v;
+            if ((System.currentTimeMillis() - value.lastAccessed) > timeToLive)
+                cacheMap.remove(k);
+            else
+                mapKeys.add((String) k);
+        });
+        return mapKeys;
     }
 
 

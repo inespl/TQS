@@ -1,15 +1,16 @@
 package tqs.Air_Quality;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 class CacheTest {
+
     WebController wc = new WebController();
     Cache c = new Cache(1000);
     Cache c2 = new Cache(1000);
@@ -18,16 +19,14 @@ class CacheTest {
     String s2 = wc.callGetAirQualityInLocation(41.1333, -8.6167);
     String s3 = wc.callGetAirQualityInLocation(41.1495, -8.6108);
 
+    CacheTest() throws IOException {
+    }
+
     @BeforeEach
     void setUp() {
         c2.put("38.7452,-9.1604", s1);
         c2.put("41.1333,-8.6167", s2);
         c2.put("41.1495,-8.6108", s3);
-    }
-
-    @AfterEach
-    void tearDown() {
-
     }
 
     @Test
@@ -55,10 +54,11 @@ class CacheTest {
         c.put("41.1333,-8.6167", s2);
 
         TimeUnit.MILLISECONDS.sleep(505);
-        assertThat(c.get("38.7452,-9.1604"), not(s1));
+        assertThat(c.get("38.7452,-9.1604"), is(nullValue()));
         assertThat(c.get("41.1333,-8.6167"), is(s2));
 
         TimeUnit.MILLISECONDS.sleep(500);
-        assertThat(c.get("41.1333,-8.6167"), not(s2));
+        assertThat(c.get("41.1333,-8.6167"), is(nullValue()));
     }
 }
+
