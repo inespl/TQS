@@ -1,4 +1,4 @@
-package tqs.Air_Quality;
+package tqs.AirQuality;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Cache {
-    private Map<String, CacheObject> cacheMap;
-    private long timeToLive;
+    private final Map<String, CacheObject> cacheMap;
+    private final long timeToLive;
 
-    public class CacheObject {
-        private long lastAccessed = System.currentTimeMillis();
-        private String quality;
+    public static class CacheObject {
+        private final long lastAccessed = System.currentTimeMillis();
+        private final String quality;
 
         public CacheObject(String quality) {
             this.quality = quality;
@@ -50,8 +50,7 @@ public class Cache {
         StringBuilder sb = new StringBuilder();
         sb.append("| CACHE MAP");
         cacheMap.forEach((k,v) -> {
-            CacheObject value = v;
-            sb.append("| " + k + " - " + value.getQuality());
+            sb.append("| ").append(k).append(" - ").append(v.getQuality());
         });
         sb.append("----------");
     }

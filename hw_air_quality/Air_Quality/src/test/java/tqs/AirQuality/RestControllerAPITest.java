@@ -1,4 +1,4 @@
-package tqs.Air_Quality;
+package tqs.AirQuality;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,16 +15,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-class Rest_ControllerTest {
+class RestControllerAPITest {
 
     MockMvc mockMvc;
 
     @Mock
-    Rest_Controller rest_controller;
+    RestControllerAPI rest_controller;
 
     @BeforeEach
     void setUp() throws IOException {
-        rest_controller = new Rest_Controller();
+        rest_controller = new RestControllerAPI();
 
         mockMvc = MockMvcBuilders.standaloneSetup(rest_controller).build();
     }

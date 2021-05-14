@@ -1,4 +1,4 @@
-package tqs.Air_Quality;
+package tqs.AirQuality;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 
 @Controller
 public class WebController{
@@ -46,10 +47,9 @@ public class WebController{
         bf.flush();
     }
 
-    // https://api.weatherbit.io/v2.0/current/airquality?lat=40.6442700&lon=-8.6455400&key=bb5a83eef6fb4c56a9beca95d5362b9e
-    public String callGetAirQualityInLocation(double lat, double lon){
+    public String callGetAirQualityByLatLon(double lat, double lon){
         HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 
@@ -74,19 +74,19 @@ public class WebController{
         bf.write(String.format("%s %s \t INFO \t\t Request for Air Quality of Lat: %f, Lon: %f%n", localDateTime[0], localDateTime[1], lat, lon));
         Quality quality;
         String latlon = lat + "," + lon;
-        String quality_json = cache.get(latlon);
+        String qualityJson = cache.get(latlon);
 
         cache.getCacheMap();
-        if (quality_json == null){
+        if (qualityJson == null){
             misses ++;
-            quality_json = callGetAirQualityInLocation(lat, lon);
-            cache.put(latlon, quality_json);
+            qualityJson = callGetAirQualityByLatLon(lat, lon);
+            cache.put(latlon, qualityJson);
             bf.write(String.format("%s %s \t SUCCESS \t Request Accepted, API returned the result (not found in cache)%n", localDateTime[0], localDateTime[1]));
         }else {
             hits++;
             bf.write(String.format("%s %s \t SUCCESS \t Request Accepted and found in cache%n", localDateTime[0], localDateTime[1]));
         }
-        quality = new Quality(quality_json);
+        quality = new Quality(qualityJson);
 
         bf.write(String.format("%s %s \t INFO \t\t Cache Statistics: Requests: %d | Hits: %d | Misses: %d%n", localDateTime[0], localDateTime[1], hits+misses, hits, misses));
 

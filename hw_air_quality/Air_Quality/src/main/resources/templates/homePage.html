@@ -94,9 +94,9 @@
 
             <div th:if="${showDetails == true}">
 
-                <h3><b>City: <span th:text="${quality.city_name}"></span></b></h3>
+                <h3><b>City: <span th:text="${quality.cityName}"></span></b></h3>
                 <p><b>Latitude:</b> <span th:text="${quality.lat}"></span>º - <b>Longitude:</b> <span th:text="${quality.lon}"></span>º</p>
-                <p><b>Country Code:</b> <span th:text="${quality.country_code}"></span>, <b>State Code:</b> <span th:text="${quality.state_code}"></span></p>
+                <p><b>Country Code:</b> <span th:text="${quality.countryCode}"></span>, <b>State Code:</b> <span th:text="${quality.stateCode}"></span></p>
                 <p><b>Timezone:</b> <span th:text="${quality.timezone}"></span></p>
 
                 <br>
@@ -124,11 +124,11 @@
                         <td th:text="${quality.co}"></td>
                         <td th:text="${quality.pm10}"></td>
                         <td th:text="${quality.pm25}"></td>
-                        <td th:text="${quality.pollen_level_tree}"></td>
-                        <td th:text="${quality.pollen_level_grass}"></td>
-                        <td th:text="${quality.pollen_level_weed}"></td>
-                        <td th:text="${quality.mold_level}"></td>
-                        <td th:text="${quality.predominant_pollen_type}"></td>
+                        <td th:text="${quality.pollenLevelTree}"></td>
+                        <td th:text="${quality.pollenLevelGrass}"></td>
+                        <td th:text="${quality.pollenLevelWeed}"></td>
+                        <td th:text="${quality.moldLevel}"></td>
+                        <td th:text="${quality.predominantPollenType}"></td>
                     </tr>
                 </table>
 

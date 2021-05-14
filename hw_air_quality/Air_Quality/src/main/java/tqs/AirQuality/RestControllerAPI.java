@@ -1,4 +1,4 @@
-package tqs.Air_Quality;
+package tqs.AirQuality;
 
 import com.google.gson.Gson;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-public class Rest_Controller {
+public class RestControllerAPI {
     WebController wc = new WebController();
     int ttl = 120000;
     Cache cache = new Cache(ttl); // 2 min
@@ -19,17 +19,17 @@ public class Rest_Controller {
     int hits = 0;
     int misses = 0;
 
-    public Rest_Controller() throws IOException {
+    public RestControllerAPI() throws IOException {
     }
 
     @GetMapping("/api")
-    public String apiData_latlon(@RequestParam(name = "lat") double lat, @RequestParam(name = "lon") double lon) {
+    public String apiDataLatLon(@RequestParam(name = "lat") double lat, @RequestParam(name = "lon") double lon) {
         String latlon = lat + "," + lon;
         String quality_json = cache.get(latlon);
 
         if (quality_json == null){
             misses ++;
-            quality_json = wc.callGetAirQualityInLocation(lat, lon);
+            quality_json = wc.callGetAirQualityByLatLon(lat, lon);
             cache.put(latlon, quality_json);
         }else
             hits ++;
@@ -38,7 +38,7 @@ public class Rest_Controller {
     }
 
     @GetMapping("/api/statistics")
-    public String apiData_stats() {
+    public String apiDataStats() {
         HashMap<String, Integer> data = new HashMap<>();
         data.put("requests", hits+misses);
         data.put("hits", hits);
@@ -49,7 +49,7 @@ public class Rest_Controller {
     }
 
     @GetMapping("/api/cache")
-    public String apiCache() {
+    public String apiDataCache() {
         HashMap<String, List<HashMap<String, Double>>> data = new HashMap<>();
         List<HashMap<String, Double>> listOfLocations = new ArrayList<>();
         HashMap<String, Double> latLons;

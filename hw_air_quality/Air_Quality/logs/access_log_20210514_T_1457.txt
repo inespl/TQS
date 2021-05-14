@@ -1,1 +1,0 @@
-2021-05-14 14:57:00.684150 	 INFO 	 Start of AirQualityApplication

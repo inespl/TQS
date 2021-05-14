@@ -1,4 +1,4 @@
-package tqs.Air_Quality;
+package tqs.AirQuality;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,9 +15,9 @@ class CacheTest {
     Cache c = new Cache(1000);
     Cache c2 = new Cache(1000);
 
-    String s1 = wc.callGetAirQualityInLocation(38.7452, -9.1604);
-    String s2 = wc.callGetAirQualityInLocation(41.1333, -8.6167);
-    String s3 = wc.callGetAirQualityInLocation(41.1495, -8.6108);
+    String s1 = wc.callGetAirQualityByLatLon(38.7452, -9.1604);
+    String s2 = wc.callGetAirQualityByLatLon(41.1333, -8.6167);
+    String s3 = wc.callGetAirQualityByLatLon(41.1495, -8.6108);
 
     CacheTest() throws IOException {
     }
