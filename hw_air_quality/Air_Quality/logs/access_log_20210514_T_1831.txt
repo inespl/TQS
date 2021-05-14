@@ -1,0 +1,2 @@
+2021-05-14 18:31:06.714504 	 INFO 		 Start of AirQualityApplication
+2021-05-14 18:31:06.714504 	 INFO 		 Cache Initiated - TTL: 60000
