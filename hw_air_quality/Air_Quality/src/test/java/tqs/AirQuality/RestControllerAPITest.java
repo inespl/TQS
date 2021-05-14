@@ -34,12 +34,16 @@ class RestControllerAPITest {
         mockMvc.perform(get("http://localhos:8080/api")
                 .param("lat","40.4")
                 .param("lon", "-8.5"))
-                .andExpect(content().string(containsString("\"city_name\":\"Mealhada\",\"lon\":-8.5,\"timezone\":\"Europe\\/Lisbon\",\"lat\":40.4,\"country_code\":\"PT\",\"state_code\":\"02\"")))
+                .andExpect(content().string(containsString("\"city_name\":\"Mealhada\",\"lon\":-8.5," +
+                        "\"timezone\":\"Europe\\/Lisbon\",\"lat\":40.4,\"country_code\":\"PT\",\"state_code\":\"02\"")))
                 .andExpect(status().isOk());
     }
 
     @Test
     void testGetStatisticsInfo() throws Exception {
+        mockMvc.perform(get("http://localhos:8080/api")
+                .param("lat","40.4")
+                .param("lon", "-8.5"));
         mockMvc.perform(get("http://localhos:8080/api/statistics"))
                 .andExpect(content().string(containsString("\"hits\"")))
                 .andExpect(content().string(containsString("\"misses\"")))

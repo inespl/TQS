@@ -21,12 +21,18 @@ class WebControllerTest {
   @BeforeEach
   void setUp(){
       wc = mock(WebController.class);
-      when(wc.callGetAirQualityByLatLon(lat, lon)).thenReturn("{\"data\":[{\"mold_level\":1,\"aqi\":41,\"pm10\":3,\"co\":235.5,\"o3\":88,\"predominant_pollen_type\":\"Molds\",\"so2\":0,\"pollen_level_tree\":1,\"pollen_level_weed\":1,\"no2\":1,\"pm25\":0.874739,\"pollen_level_grass\":1}],\"city_name\":\"Mealhada\",\"lon\":-8.5,\"timezone\":\"Europe\\/Lisbon\",\"lat\":40.4,\"country_code\":\"PT\",\"state_code\":\"02\"}\n");
+      when(wc.callGetAirQualityByLatLon(lat, lon)).thenReturn("{\"data\":[{\"mold_level\":1,\"aqi\":41,\"pm10\":3," +
+              "\"co\":235.5,\"o3\":88,\"predominant_pollen_type\":\"Molds\",\"so2\":0,\"pollen_level_tree\":1," +
+              "\"pollen_level_weed\":1,\"no2\":1,\"pm25\":0.874739,\"pollen_level_grass\":1}],\"city_name\":\"Mealhada\"," +
+              "\"lon\":-8.5,\"timezone\":\"Europe\\/Lisbon\",\"lat\":40.4,\"country_code\":\"PT\",\"state_code\":\"02\"}\n");
   }
 
   @Test
   void testAPICall(){
-      assertThat(wc.callGetAirQualityByLatLon(lat, lon), is("{\"data\":[{\"mold_level\":1,\"aqi\":41,\"pm10\":3,\"co\":235.5,\"o3\":88,\"predominant_pollen_type\":\"Molds\",\"so2\":0,\"pollen_level_tree\":1,\"pollen_level_weed\":1,\"no2\":1,\"pm25\":0.874739,\"pollen_level_grass\":1}],\"city_name\":\"Mealhada\",\"lon\":-8.5,\"timezone\":\"Europe\\/Lisbon\",\"lat\":40.4,\"country_code\":\"PT\",\"state_code\":\"02\"}\n"));
+      assertThat(wc.callGetAirQualityByLatLon(lat, lon), is("{\"data\":[{\"mold_level\":1,\"aqi\":41,\"pm10\":3," +
+              "\"co\":235.5,\"o3\":88,\"predominant_pollen_type\":\"Molds\",\"so2\":0,\"pollen_level_tree\":1," +
+              "\"pollen_level_weed\":1,\"no2\":1,\"pm25\":0.874739,\"pollen_level_grass\":1}],\"city_name\":\"Mealhada\"," +
+              "\"lon\":-8.5,\"timezone\":\"Europe\\/Lisbon\",\"lat\":40.4,\"country_code\":\"PT\",\"state_code\":\"02\"}\n"));
   }
 
   @Test
