@@ -149,8 +149,15 @@
                     <p><b>PLW</b>: Weed pollen level (0 = None, 1 = Low, 2 = Moderate, 3 = High, 4 = Very High)</p>
                     <p><b>ML</b>: Mold level (0 = None, 1 = Low, 2 = Moderate, 3 = High, 4 = Very High)</p>
                     <p><b>PPT</b>: Predominant pollen type (Trees/Weeds/Molds/Grasses)</p>
-
                 </div>
+
+                <br>
+
+                <h3><b>Cache Statistics</b></h3>
+                <p></p>
+                <p><b>Requests:</b> <span th:text="${stats[0]}"></span></p>
+                <p><b>Hits:</b> <span th:text="${stats[1]}"></span></p>
+                <p><b>Misses:</b> <span th:text="${stats[2]}"></span></p>
             </div>
         </div>
     </body>

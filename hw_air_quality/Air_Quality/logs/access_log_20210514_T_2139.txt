@@ -1,0 +1,12 @@
+2021-05-14 21:39:11.841619 	 INFO 		 Start of AirQualityApplication
+2021-05-14 21:39:11.841619 	 INFO 		 Cache Initiated - TTL: 60000
+2021-05-14 21:39:11.841619 	 INFO 		 Acessed '/'
+2021-05-14 21:39:11.841619 	 INFO 		 Request for Air Quality of Lat: 39,600000, Lon: -9,500000
+2021-05-14 21:39:11.841619 	 SUCCESS 	 Request Accepted, API returned the result (not found in cache)
+2021-05-14 21:39:11.841619 	 INFO 		 Cache Statistics: Requests: 1 | Hits: 0 | Misses: 1
+2021-05-14 21:39:11.841619 	 INFO 		 Request for Air Quality of Lat: 39,600000, Lon: -9,500000
+2021-05-14 21:39:11.841619 	 SUCCESS 	 Request Accepted and found in cache
+2021-05-14 21:39:11.841619 	 INFO 		 Cache Statistics: Requests: 2 | Hits: 1 | Misses: 1
+2021-05-14 21:39:11.841619 	 INFO 		 Request for Air Quality of Lat: 40,600000, Lon: -8,500000
+2021-05-14 21:39:11.841619 	 SUCCESS 	 Request Accepted, API returned the result (not found in cache)
+2021-05-14 21:39:11.841619 	 INFO 		 Cache Statistics: Requests: 3 | Hits: 1 | Misses: 2

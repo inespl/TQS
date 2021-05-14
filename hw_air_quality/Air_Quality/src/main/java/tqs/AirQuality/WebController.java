@@ -13,8 +13,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class WebController{
@@ -59,6 +61,11 @@ public class WebController{
         return result.getBody();
     }
 
+    public int[] cacheStatistics(){
+        int[] stats = {hits+misses, hits, misses};
+        return stats;
+    }
+
     @GetMapping("/")
     public String home(Model model) throws IOException {
         bf = new BufferedWriter(fw);
@@ -88,12 +95,15 @@ public class WebController{
         }
         quality = new Quality(qualityJson);
 
-        bf.write(String.format("%s %s \t INFO \t\t Cache Statistics: Requests: %d | Hits: %d | Misses: %d%n", localDateTime[0], localDateTime[1], hits+misses, hits, misses));
+        int[] stats = cacheStatistics();
+        bf.write(String.format("%s %s \t INFO \t\t Cache Statistics: Requests: %d | Hits: %d | Misses: %d%n", localDateTime[0], localDateTime[1], stats[0], stats[1], stats[2]));
+
 
         model.addAttribute("showDetails", true);
         model.addAttribute("quality", quality);
         model.addAttribute("givenLat", lat);
         model.addAttribute("givenLon", lon);
+        model.addAttribute("stats", stats);
 
         bf.flush();
         return "homePage";
